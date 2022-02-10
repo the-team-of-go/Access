@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "google.golang.org/grpc/examples/Join/ToA";
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.ToA";
+option java_outer_classname = "ToAProto";
+
+package ToA;
+
+service Report {
+
+    rpc Send(ReportReq) returns (ReportRsp) {}
+
+}
+
+message ReportReq {
+    int32 MachineId = 1;
+    double CpuPercent = 2;
+    double MemPercent = 3;
+    double DiskPercent = 4;
+    int64 TimeStamp = 5;
+}
+
+message ReportRsp {
+    int32 code = 1;
+    string msg = 2;
+}
+
