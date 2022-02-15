@@ -1,3 +1,0 @@
-AgentClient 对应主机端的客户端
-AgentServerJudgeClient 对应主机端的服务端与判定服务端的客户端
-JudgeServer 对应判定服务端的服务端
