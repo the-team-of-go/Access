@@ -84,7 +84,7 @@ func RunGetUserInfo() {
 				}
 				feature, err := client.GetUserInfo(ctx, userinfo)
 				if err != nil {
-					log.Println("%v.GetUserInfo(_) = _, %v: ", client, err)
+					log.Printf("%v.GetUserInfo(_) = _, %v: \n", client, err)
 				}
 
 				log.Println(feature)
@@ -103,7 +103,7 @@ func RunJointToJudge(AgentAddr string) {
 	c.Start()
 
 	// lis, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:50051"))
-	lis, err := net.Listen("tcp", fmt.Sprintf(AgentAddr))
+	lis, err := net.Listen("tcp", AgentAddr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}

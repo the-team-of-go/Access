@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"log"
 	"net"
@@ -12,9 +11,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-var (
-	port = flag.Int("port", 50052, "The server port")
-)
+// var (
+// 	port = flag.Int("port", 50052, "The server port")
+// )
 
 type UserInfoServiceServer struct {
 	db.UnimplementedUserInfoServiceServer
@@ -32,7 +31,7 @@ func (s *UserInfoServiceServer) GetUserInfo(ctx context.Context, userRequest *db
 func RunJudge(judgeAddr string) {
 
 	// lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", *port))
-	lis, err := net.Listen("tcp", fmt.Sprintf(judgeAddr))
+	lis, err := net.Listen("tcp", judgeAddr)
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
