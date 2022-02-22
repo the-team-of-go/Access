@@ -6,8 +6,8 @@ import (
 	"log"
 	"time"
 
-	pb "Recv/service/pb/agent"
-	"Recv/service/pb/gopool"
+	pb "Access/service/pb/agent"
+	"Access/service/pb/gopool"
 
 	"google.golang.org/grpc"
 )
