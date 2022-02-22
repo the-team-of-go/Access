@@ -1,7 +1,7 @@
 package main
 
 import (
-	ser "Recv/service"
+	ser "Access/Recv/service"
 )
 
 //"10.243.55.132:50051"

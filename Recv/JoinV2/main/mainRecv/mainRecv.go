@@ -1,7 +1,7 @@
 package main
 
 import (
-	service "Recv/service"
+	service "Access/Recv/service"
 )
 
 //本"10.243.55.132:50051"
@@ -12,6 +12,6 @@ func main() {
 	//判定服务的端口设定
 	service.SetUserInfoServiceAddr("127.0.0.1:50052")
 	//Agent的端口设定
-	service.RunJointToJudge("10.243.55.132:50051")
+	service.RunJointToJudge("127.0.0.1:50051")
 
 }

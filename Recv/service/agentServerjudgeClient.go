@@ -10,9 +10,9 @@ import (
 	"github.com/robfig/cron"
 	"google.golang.org/grpc"
 
-	pb "Recv/service/pb/agent"
-	"Recv/service/pb/gopool"
-	db "Recv/service/pb/judge"
+	pb "Access/Recv/service/pb/agent"
+	"Access/Recv/service/pb/gopool"
+	db "Access/Recv/service/pb/judge"
 )
 
 // var (
@@ -151,29 +151,3 @@ func RunJointToJudge(AgentAddr string) {
 		log.Fatalf("failed to serve: %v", err)
 	}
 }
-
-///开启连接
-// func main() {
-// 	flag.Parse()
-
-// 	var hostaddr string = "127.0.0.1:50051"
-// 	//var aport int = 50051
-// 	// lis, err := net.Listen("tcp", fmt.Sprintf("10.243.55.132:%d", *port))
-// 	// lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", aport))
-// 	lis, err := net.Listen("tcp", fmt.Sprintf(hostaddr))
-// 	if err != nil {
-// 		log.Fatalf("failed to listen: %v", err)
-// 	}
-
-// 	grpcServer := grpc.NewServer()
-// 	///////
-
-// 	//s := grpc.NewServer()
-// 	pb.RegisterReportServer(grpcServer, &ReportServer{})
-
-// 	log.Printf("server listening at %v", lis.Addr())
-// 	if err := grpcServer.Serve(lis); err != nil {
-// 		log.Fatalf("failed to serve: %v", err)
-// 	}
-
-// }

@@ -7,7 +7,7 @@ import (
 	"log"
 	"net"
 
-	db "Recv/service/pb/judge"
+	db "Access/Recv/service/pb/judge"
 
 	"google.golang.org/grpc"
 )
