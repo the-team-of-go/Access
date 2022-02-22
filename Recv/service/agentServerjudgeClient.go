@@ -58,12 +58,12 @@ func (s *ReportServer) Send(ctx context.Context, reportReq *pb.ReportReq) (*pb.R
 func RunGetUserInfo() {
 
 	if ReportReqsq.Getqsize() > 0 {
-		fmt.Println()
+
 		pool := gopool.New(PoolSize)
 
 		conn, err := grpc.Dial(JudgeAddr, grpc.WithInsecure())
 		if err != nil {
-			log.Fatalf("fail to dial: %v", err)
+			log.Println("fail to dial: ", err)
 		}
 		defer conn.Close()
 		client := db.NewUserInfoServiceClient(conn)
@@ -71,7 +71,7 @@ func RunGetUserInfo() {
 		defer cancel()
 
 		for ReportReqsq.Getqsize() > 0 {
-			fmt.Println("ind is ", ind, " qsize is ", ReportReqsq.Getqsize())
+			fmt.Println("  ind is ", ind, " qsize is ", ReportReqsq.Getqsize())
 			RRsq := ReportReqsq.Dequeue()
 			pool.Add(1)
 			go func(RRsq *pb.ReportReq) {
@@ -84,9 +84,9 @@ func RunGetUserInfo() {
 				}
 				feature, err := client.GetUserInfo(ctx, userinfo)
 				if err != nil {
-					log.Fatalf("%v.GetUserInfo(_) = _, %v: ", client, err)
+					log.Println("%v.GetUserInfo(_) = _, %v: ", client, err)
 				}
-				fmt.Println()
+
 				log.Println(feature)
 				pool.Done()
 			}(RRsq)
@@ -98,8 +98,8 @@ func RunGetUserInfo() {
 
 func RunJointToJudge(AgentAddr string) {
 
-	c := cron.New()                             // 新建一个定时任务对象
-	c.AddFunc("*/10 * * * * ?", RunGetUserInfo) // 给对象增加定时任务
+	c := cron.New()                            // 新建一个定时任务对象
+	c.AddFunc("*/3 * * * * ?", RunGetUserInfo) // 给对象增加定时任务
 	c.Start()
 
 	// lis, err := net.Listen("tcp", fmt.Sprintf("127.0.0.1:50051"))
